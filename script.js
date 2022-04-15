@@ -1,26 +1,26 @@
-/**
- * Namespace
- */
+// Variables 
  var Game      = Game      || {};
  var Keyboard  = Keyboard  || {}; 
  var Component = Component || {};
  
- /**
-  * Keyboard Map
-  */
+ // Keyboard Mapping
  Keyboard.Keymap = {
+   // arrow keys
    37: 'left',
    38: 'up',
    39: 'right',
-   40: 'down'
+   40: 'down',
+   // asdw
+   65: 'left',
+   87: 'up',
+   83: 'down',
+   68: 'right'
  };
  
- /**
-  * Keyboard Events
-  */
+// Keyboard Events
  Keyboard.ControllerEvents = function() {
    
-   // Setts
+   // Sets
    var self      = this;
    this.pressKey = null;
    this.keymap   = Keyboard.Keymap;
@@ -36,9 +36,7 @@
    };
  };
  
- /**
-  * Game Component Stage
-  */
+// Game Stage
  Component.Stage = function(canvas, conf) {  
    
    // Sets
@@ -66,9 +64,7 @@
    
  };
  
- /**
-  * Game Component Snake
-  */
+// Game Snake
  Component.Snake = function(canvas, conf) {
    
    // Game Stage
@@ -77,7 +73,7 @@
    // Init Snake
    this.initSnake = function() {
      
-     // Itaration in Snake Conf Size
+     // Iteration in Snake Conf Size
      for (var i = 0; i < this.stage.conf.size; i++) {
        
        // Add Snake Cells
@@ -85,7 +81,7 @@
          }
      };
    
-   // Call init Snake
+   // init Snake
    this.initSnake();
    
    // Init Food  
@@ -112,10 +108,8 @@
      this.initFood();
    };
  };
- 
- /**
-  * Game Draw
-  */
+
+ // Game Draw
  Game.Draw = function(context, snake) {
    
    // Draw Stage
@@ -128,7 +122,7 @@
      }
      
      // Draw White Stage
-         context.fillStyle = "white";
+         context.fillStyle = "#2E2C2F";
          context.fillRect(0, 0, snake.stage.width, snake.stage.height);
          
      // Snake Position
@@ -179,12 +173,12 @@
      this.drawCell(snake.stage.food.x, snake.stage.food.y);
      
      // Draw Score
-     context.fillText('Score: ' + snake.stage.score, 5, (snake.stage.height - 5));
+     context.fillText('score: ' + snake.stage.score, 5, (snake.stage.height - 5));
    };
    
    // Draw Cell
    this.drawCell = function(x, y) {
-     context.fillStyle = 'rgb(170, 170, 170)';
+     context.fillStyle = '#729B79';
      context.beginPath();
      context.arc((x * snake.stage.conf.cw + 6), (y * snake.stage.conf.cw + 6), 4, 0, 2*Math.PI, false);    
      context.fill();
@@ -200,9 +194,7 @@
  };
  
  
- /**
-  * Game Snake
-  */
+// Game Snake
  Game.Snake = function(elementId, conf) {
    
    // Sets
@@ -216,9 +208,7 @@
  };
  
  
- /**
-  * Window Load
-  */
+// Window Loading
  window.onload = function() {
    var snake = new Game.Snake('stage', {fps: 100, size: 4});
  };
